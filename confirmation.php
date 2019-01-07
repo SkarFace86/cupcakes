@@ -9,9 +9,10 @@
 $username = $_POST['name'];
 $flavor = $_POST['flavor'];
 $total = sizeof($flavor) * 3.50;
-echo "<p>Thank you, $username, for your order!</p><br><br>";
+//print_r($flavor);
+echo "<p>Thank you, $username, for your order!</p>";
 
-echo "<p>Order Summary:</p><br>
+echo "<p>Order Summary:</p>
     <ul>";
         foreach($flavor as $flav) {
             echo "<li><strong>$flav</strong></li>";

@@ -6,10 +6,10 @@
  * Time: 3:45 PM
  */
 
-if(!isset($_POST['name'])) {
+if(empty($_POST['name'])) {
     $isValid = false;
 }
 
-if(!isset($_POST['flavor'])) {
+if(empty($_POST['flavor'])) {
     $isValid = false;
 }

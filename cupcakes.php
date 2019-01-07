@@ -11,10 +11,10 @@ error_reporting(E_ALL);
 $isValid = true;
 $username = "";
 $flavor = array();
+include('verify.php');
 if(!empty($_POST)) {
     $username = $_POST['name'];
     if(!empty($_POST['flavor'])) { $flavor = $_POST['flavor']; }
-    include('verify.php');
 }
 if($isValid) {
     require('confirmation.php');
@@ -57,8 +57,8 @@ $cupcakes = [
             <label>
                 <?php
                 foreach($cupcakes as $key => $cupcake) {
-                    echo "<input type='checkbox' name='flavor[]' value='$key'";
-                            if(in_array($key, $flavor)) {
+                    echo "<input type='checkbox' name='flavor[]' value='$cupcake'";
+                            if(in_array($cupcake, $flavor)) {
                                 echo "checked='checked'";
                             }
 
