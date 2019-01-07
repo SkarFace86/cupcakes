@@ -18,6 +18,7 @@ $cupcakes = [
 ];
 $isValid = true;
 $username = "";
+$faultyInfo = "";
 $nameError = "";
 $flavorError = "";
 $flavor = array();
@@ -47,7 +48,7 @@ if($isValid && !empty($_POST)) {
         <fieldset>
             <!-- User Name -->
             <?php
-                echo "<p style='color:red'>$nameError</p>";
+                if(!empty($nameError)) { echo "<p style='color:red'>$nameError</p>"; }
             ?>
             <legend>Enter your name</legend>
             <label>Full Name:&nbsp;
@@ -59,8 +60,9 @@ if($isValid && !empty($_POST)) {
         <fieldset>
             <!-- Cupcakes -->
             <?php
-                echo "<p style='color:red'>$flavorError</p>";
-            ?>
+                if(!empty($flavorError)) { echo "<p style='color:red'>$flavorError</p>"; }
+                if(!empty($faultyInfo)) { echo "<p style='color:red'>$faultyInfo</p>"; }
+            ?>+
             <legend>Select your cupcakes</legend>
             <label>
                 <?php
