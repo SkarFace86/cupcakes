@@ -9,3 +9,7 @@
 if(!isset($_POST['name'])) {
     $isValid = false;
 }
+
+if(!isset($_POST['flavor'])) {
+    $isValid = false;
+}

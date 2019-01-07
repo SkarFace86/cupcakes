@@ -8,16 +8,16 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-$isValid = false;
+$isValid = true;
 $username = "";
 $flavor = array();
 if(!empty($_POST)) {
     $username = $_POST['name'];
-    $flavor = $_POST['flavor'];
+    if(!empty($_POST['flavor'])) { $flavor = $_POST['flavor']; }
     include('verify.php');
 }
 if($isValid) {
-    header('confirmation.php');
+    require('confirmation.php');
 }
 $cupcakes = [
     "grasshopper" => "The Grasshopper",
@@ -57,7 +57,7 @@ $cupcakes = [
             <label>
                 <?php
                 foreach($cupcakes as $key => $cupcake) {
-                    echo "<input type='checkbox' name='flavor[]'";
+                    echo "<input type='checkbox' name='flavor[]' value='$key'";
                             if(in_array($key, $flavor)) {
                                 echo "checked='checked'";
                             }
