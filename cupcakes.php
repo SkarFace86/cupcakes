@@ -9,8 +9,13 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 $isValid = false;
-$username = $_POST['name'];
-include('verify.php');
+$username = "";
+$flavor = array();
+if(!empty($_POST)) {
+    $username = $_POST['name'];
+    $flavor = $_POST['flavor'];
+    include('verify.php');
+}
 if($isValid) {
     header('confirmation.php');
 }
@@ -36,5 +41,33 @@ $cupcakes = [
 <body>
     <h1>Cupcake Fundraiser</h1>
 
+    <form method="POST" action="">
+        <fieldset>
+            <!-- User Name -->
+            <legend>Enter your name</legend>
+            <label>Full Name:&nbsp;
+                <input type="text" name="name"
+                       value="<?php echo $username; ?>">
+            </label>
+        </fieldset>
+        <br><br>
+        <fieldset>
+            <!-- Cupcakes -->
+            <legend>Select your cupcakes</legend>
+            <label>
+                <?php
+                foreach($cupcakes as $key => $cupcake) {
+                    echo "<input type='checkbox' name='flavor[]'";
+                            if(in_array($key, $flavor)) {
+                                echo "checked='checked'";
+                            }
+
+                    echo "<label>&nbsp;$cupcake</label><br>";
+                }
+                ?>
+            </label>
+        </fieldset>
+        <input type="submit" value="Place Order">
+    </form>
 </body>
 </html>
