@@ -7,9 +7,11 @@
  */
 
 if(empty($_POST['name'])) {
+    $nameError = "** Name field required";
     $isValid = false;
 }
 
 if(empty($_POST['flavor'])) {
+    $flavorError = "** Select at least one flavor";
     $isValid = false;
 }

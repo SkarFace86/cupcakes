@@ -19,5 +19,5 @@ echo "<p>Order Summary:</p>
         }
 echo "</ul><br>";
 
-echo "Order Total: $$total";
+echo "Order Total: $" . number_format((double)$total, 2, '.', '');
 exit;

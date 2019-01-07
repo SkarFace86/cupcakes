@@ -8,17 +8,6 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-$isValid = true;
-$username = "";
-$flavor = array();
-include('verify.php');
-if(!empty($_POST)) {
-    $username = $_POST['name'];
-    if(!empty($_POST['flavor'])) { $flavor = $_POST['flavor']; }
-}
-if($isValid) {
-    require('confirmation.php');
-}
 $cupcakes = [
     "grasshopper" => "The Grasshopper",
     "carrot" => "Carrot Walnut",
@@ -26,7 +15,20 @@ $cupcakes = [
     "velvet" => "Red Velvet",
     "lemon" => "Lemon Drop",
     "tiramisu" => "Tiramisu"
-]
+];
+$isValid = true;
+$username = "";
+$nameError = "";
+$flavorError = "";
+$flavor = array();
+if(!empty($_POST)) {
+    include('verify.php');
+    $username = $_POST['name'];
+    if(!empty($_POST['flavor'])) { $flavor = $_POST['flavor']; }
+}
+if($isValid && !empty($_POST)) {
+    require('confirmation.php');
+}
 ?>
 
 <!doctype html>
@@ -44,6 +46,9 @@ $cupcakes = [
     <form method="POST" action="">
         <fieldset>
             <!-- User Name -->
+            <?php
+                echo "<p style='color:red'>$nameError</p>";
+            ?>
             <legend>Enter your name</legend>
             <label>Full Name:&nbsp;
                 <input type="text" name="name"
@@ -53,6 +58,9 @@ $cupcakes = [
         <br><br>
         <fieldset>
             <!-- Cupcakes -->
+            <?php
+                echo "<p style='color:red'>$flavorError</p>";
+            ?>
             <legend>Select your cupcakes</legend>
             <label>
                 <?php
